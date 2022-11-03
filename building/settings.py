@@ -33,7 +33,13 @@ CORS_ALLOWED_ORIGINS = [
      "http://localhost:63342"
 ]
 
-ALLOWED_HOSTS = ['192.168.222.220','10.19.7.110']
+
+
+ALLOWED_HOSTS = [
+    '192.168.222.220',
+    '10.19.7.110',
+    '127.0.0.1',
+    'localhost',]
 
 
 INSTALLED_APPS = [
@@ -53,6 +59,7 @@ INSTALLED_APPS = [
     'transaction',
     'comment',
     'corsheaders',
+    'user_profile',
 ]
 
 

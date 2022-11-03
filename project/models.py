@@ -17,27 +17,22 @@ class Categorie(models.Model):
         verbose_name_plural = 'категории'
 
 class Project(models.Model):
-        owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,related_name='user'
-                                )
+        owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,related_name='user')
         image = models.ImageField(blank=True)
         title = models.CharField(max_length=200)
         description = models.CharField(max_length=200)
         published_data = models.DateTimeField(auto_now_add=True)
         update_date = models.DateTimeField(auto_now=True)
         need_money = models.IntegerField(default=1000)
-
+        #comment = models.ManyToManyField(Comment, through='Relations',related_name='comment')
         till_date_duration=((timedelta(days=10),'малый срок'),(timedelta(days=21),'среднии срок'),(timedelta(days=31),'большой срок'))
-
-
         till_data = models.DurationField(choices=till_date_duration)
         categories = models.ForeignKey(Categorie,on_delete=models.CASCADE,blank=True)
-
         class STATUS:
             ACTIVE = 'active'
             FINISHED = 'finished'
             CANCELED = 'canceled'
             CHOICES = [(ACTIVE, 'active'), (FINISHED, 'finished'), (CANCELED, 'canceled')]
-
         status = models.TextField(choices=STATUS.CHOICES, default=STATUS.ACTIVE)
         project_invest = models.ManyToManyField(User, through='Relations',related_name='project')
 
